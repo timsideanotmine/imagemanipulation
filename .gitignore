@@ -130,7 +130,8 @@ venv.bak/
 
 # Only upload some examples from the ouput
 images/output/
-git add -f images/output/*example*
+!images/output/.gitkeep
+git add -f images/output/example*.*
 
 
 # Spyder project settings
