@@ -128,12 +128,6 @@ ENV/
 env.bak/
 venv.bak/
 
-# Only upload some examples from the ouput
-images/output/
-!images/output/.gitkeep
-git add -f images/output/example*.*
-
-
 # Spyder project settings
 .spyderproject
 .spyproject
