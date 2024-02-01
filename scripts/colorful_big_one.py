@@ -192,12 +192,16 @@ def create_instructed_image(given_image, instruction):
         [color, manner_of_flip, manner_of_rotation, process]
         
         color : set color of image to red, green, blue or no color
-        manner_of_flip = do a horizontal of vertical flip or do no flip with the image
+        manner_of_flip = do a horizontal or vertical flip or do no flip with the image
         manner_of_rotation = do a left or right rotation or do no rotation with the image
         process = apply the process of making the image noisy, shady, black and white or do nothing
         
         please note the process of making an image black and white is not regarded 
-        as setting a color, but rather as removing the color from an image"""
+        as setting a color, but rather as removing the color from an image. That means
+        an image can be colorized first but end up being made black_and_whtite
+        
+        please also note that a horizontal flip and a left rotation produces the same
+        result as a vertical flip with a right rotation"""
     
     given_image = color_image(given_image, instruction[0])
     given_image = flip_image(given_image, instruction[1])
@@ -223,7 +227,7 @@ def generate_random_instruction_list():
     # 3 possible flip options 
     # 3 possible rotation options
     # 4 possible process options
-    # 4 * 3 * 3 * 4 = 144
+    # gives a total of 4 * 3 * 3 * 4 = 144
     number_of_combinations = 144
     
     print(f"** step 1 ** Generating standard combination instruction list of {number_of_combinations} possible combinations", end='\r')
@@ -236,6 +240,7 @@ def generate_random_instruction_list():
     print(f"** step 1 ** Generating standard combination instruction list of {number_of_combinations} possible combinations, done")
     print()
         
+    # at this point we will randomize each differentiated combinations of options to have a random sequence of processing into the colorful_big_one image
     print(f"** step 2 ** Randomizing the standard combination list for {number_of_combinations} combinations to create an new image each time executed", end='\r')
     random_sequence = np.random.permutation(np.arange(0, number_of_combinations))
    
@@ -244,7 +249,7 @@ def generate_random_instruction_list():
         instruction_list.append(reference_list[number])
 
     
-    print(f"** step 2 ** Randomizing the standard combination list for {number_of_combinations} combinations to create an new image eacht time executed, done")
+    print(f"** step 2 ** Randomizing the standard combination list for {number_of_combinations} combinations to create an new image each time executed, done")
     print()
     return instruction_list 
 
