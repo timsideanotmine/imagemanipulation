@@ -94,7 +94,6 @@ def generate_random_instruction_list_by_numpying_it():
     instruction_list.append(random.choice(rotations))
     instruction_list.append(random.choice(makings))
 
-    print(instruction_list)
     
     return instruction_list 
 
@@ -121,6 +120,10 @@ def apply_combination_of_functions_by_numpying_it(given_image, given_color, give
 
     if given_process != 'no_making':
         given_image = cbof.make_the_image(given_image, instruction[3])
+
+    
+    print(f"random_pick = {instruction}, parameters are {given_color}, {given_manner_of_flip}, {given_manner_of_rotation},  {given_process}. ")
+
 
     return given_image
 
@@ -235,7 +238,6 @@ def create_tims_image_3_by_numpying_it(given_image, given_random_combination):
         given_image_top = apply_combination_of_functions_by_numpying_it(given_image_top, 'no_color', 'no_flip', 'any_rotate', 'no_making')
     elif given_random_combination == 'randomize_making':
         given_image_top = apply_combination_of_functions_by_numpying_it(given_image_top, 'no_color', 'no_flip', 'no_rotate', 'any_making')
-
     
     if given_random_combination == 'randomize_flip':
         given_image_bottom = apply_combination_of_functions_by_numpying_it(given_image_bottom, 'no_color', 'any_flip', 'no_rotate', 'no_making')
@@ -277,6 +279,59 @@ def create_tims_image_3_by_numpying_it(given_image, given_random_combination):
     given_image_to_show = np.vstack((given_image_to_show, given_image_row_green))
    
     return given_image_to_show
+
+# ----------------------------------------------------------------
+def create_johans_image_1_by_numpying_it(given_image):
+
+    """
+    #  ....... ....... ....... .......
+    #  :  1  : :  2  : :  3  : :  4  :
+    #  ....... ....... ....... .......
+    #  ....... ............... .......
+    #  :  5  : :             : :  7  :
+    #  ....... :     13      : .......
+    #  ....... :             : .......
+    #  :  6  : :             : :  8  :
+    #  ....... ............... .......
+    #  ....... ....... ....... .......
+    #  :  9  : :  10 : :  11 : :  12 :
+    #  ....... ....... ....... .......
+
+    """
+            
+    given_image_01 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'any_color', 'no_flip',  'no_rotate',  'no_making')
+    given_image_02 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'any_flip', 'no_rotate',  'no_making')
+    given_image_03 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'no_flip',  'any_rotate', 'no_making')
+    given_image_04 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'no_flip',  'no_rotate',  'any_making')
+    given_image_05 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'any_color', 'no_flip',  'no_rotate',  'no_making')
+    given_image_06 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'any_flip', 'no_rotate',  'no_making')
+    given_image_07 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'no_flip',  'any_rotate', 'no_making')
+    given_image_08 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'no_flip',  'no_rotate',  'any_making')
+    given_image_09 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'any_color', 'no_flip',  'no_rotate',  'no_making')
+    given_image_10 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'any_flip', 'no_rotate',  'no_making')
+    given_image_11 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'no_flip',  'any_rotate', 'no_making')
+    given_image_12 = apply_combination_of_functions_by_numpying_it(given_image.copy(), 'no_color',  'no_flip',  'no_rotate',  'any_making')
+    given_image_13 = apply_combination_of_functions_by_numpying_it(
+                        cbof.make_the_image(given_image.copy(),'double_size'),
+                        'any_color', 'any_flip', 'any_rotate', 'any_making')
+
+    colorful_big_one_horizontal_01 = np.concatenate((given_image_01, given_image_02), axis=1)
+    colorful_big_one_horizontal_01 = np.concatenate((colorful_big_one_horizontal_01, given_image_03), axis=1)
+    colorful_big_one_horizontal_01 = np.concatenate((colorful_big_one_horizontal_01, given_image_04), axis=1)
+
+    colorful_big_one_vertical_01 = np.concatenate((given_image_05, given_image_06), axis=0)
+    colorful_big_one_vertical_02 = np.concatenate((given_image_07, given_image_08), axis=0)
+    colorful_big_one_horizontal_02 = np.concatenate((colorful_big_one_vertical_01, given_image_13), axis=1)
+    colorful_big_one_horizontal_02 = np.concatenate((colorful_big_one_horizontal_02, colorful_big_one_vertical_02), axis=1)
+
+    colorful_big_one_horizontal_03 = np.concatenate((given_image_09, given_image_10), axis=1)
+    colorful_big_one_horizontal_03 = np.concatenate((colorful_big_one_horizontal_03, given_image_11), axis=1)
+    colorful_big_one_horizontal_03 = np.concatenate((colorful_big_one_horizontal_03, given_image_12), axis=1)
+
+    colorful_big_one = np.concatenate((colorful_big_one_horizontal_01, colorful_big_one_horizontal_02), axis=0)
+    colorful_big_one = np.concatenate((colorful_big_one, colorful_big_one_horizontal_03), axis=0)
+
+    return colorful_big_one
 
 # ----------------------------------------------------------------
 # Functions <*>_by_plotting_it hereunder only to be used with the function, first subplotting solution
