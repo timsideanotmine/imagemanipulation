@@ -50,7 +50,7 @@ cbof.show_the_image(image_to_show)
 # # # tims_image_3, clockwise color solution with double sized image
 # options for given_random_combination : 'default', 'randomize_flip', 'randomize_rotate', 'randomize_making'
 # note : the colors of the exercise are never changed
-image_to_show = cbos.create_tims_image_3_by_numpying_it(use_this_image, 'default')
+image_to_show = cbos.create_tims_image_3_by_numpying_it(use_this_image.copy(), 'default')
 cbof.show_the_image(image_to_show)
 # image_to_show = cbos.create_tims_image_3_by_numpying_it(use_this_image, 'randomize_flip')
 # cbof.show_the_image(image_to_show)
@@ -58,3 +58,11 @@ cbof.show_the_image(image_to_show)
 # cbof.show_the_image(image_to_show)
 # image_to_show = cbos.create_tims_image_3_by_numpying_it(use_this_image, 'randomize_making')
 # cbof.show_the_image(image_to_show)
+
+# -------------------------------------
+# # johans_image_1, clockwise color solution with double sized image, 4 x 4
+# no options for given_random_combination : all is randomized
+# note : the framework is fixed, is stacked by np.concatenate 
+image_to_show = cbos.create_johans_image_1_by_numpying_it(use_this_image.copy())
+cbof.show_the_image(image_to_show)
+    
